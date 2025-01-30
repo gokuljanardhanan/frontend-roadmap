@@ -17,6 +17,17 @@ import ReactFlow, {
 import "reactflow/dist/style.css";
 import RoadmapNode from "@/components/features/roadmap/RoadmapNode";
 
+// Add type definition
+type RoadmapItem = {
+  id: string;
+  title: string;
+  highlighted?: boolean;
+  recommended?: boolean;
+  alternative?: boolean;
+  description?: string;
+  children?: RoadmapItem[];
+};
+
 const nodeTypes = {
   roadmap: RoadmapNode,
 };
@@ -25,30 +36,25 @@ const nodeWidth = 250;
 const nodeHeight = 80;
 const MAIN_PATH_X = 800;
 const HORIZONTAL_SPACING = 400;
-const BASE_VERTICAL_SPACING = 500; // Base vertical spacing
 const SIDE_OFFSET = 500;
 const CHILD_SPACING = 150;
-const CHILD_HEIGHT_MULTIPLIER = 100; // Additional space per child
 
 // Calculate required vertical space based on children count
-const calculateRequiredVerticalSpace = (node: any) => {
-  const directChildren = node.children?.length || 0;
-  const subChildren =
-    node.children?.reduce(
-      (acc: number, child: any) => acc + (child.children?.length || 0),
-      0
-    ) || 0;
-  const totalChildren = Math.max(directChildren, subChildren);
+const calculateRequiredVerticalSpace = (node: RoadmapItem): number => {
+  if (!node.children) {
+    return 1;
+  }
 
-  // Return base spacing plus additional space per child
-  return BASE_VERTICAL_SPACING + totalChildren * CHILD_HEIGHT_MULTIPLIER;
+  return node.children.reduce((acc, child) => {
+    return acc + calculateRequiredVerticalSpace(child);
+  }, 0);
 };
 
 // Helper to get main node position with dynamic spacing
 const getMainNodePosition = (
   index: number,
   totalNodes: number,
-  previousNodes: any[]
+  previousNodes: RoadmapItem[]
 ) => {
   const nodesPerRow = 2;
   const row = Math.floor(index / nodesPerRow);
@@ -60,7 +66,7 @@ const getMainNodePosition = (
     const previousNodeIndex = i * nodesPerRow + col;
     if (previousNodeIndex < previousNodes.length) {
       cumulativeY += calculateRequiredVerticalSpace(
-        previousNodes[previousNodeIndex]
+        previousNodes[previousNodeIndex] as RoadmapItem
       );
     }
   }

@@ -1,13 +1,18 @@
 export interface TestCase {
-  input: any[];
-  output: any;
-  description?: string;
+  input: (string | number | boolean | object)[];
+  output:
+    | (string | number | boolean | object)[]
+    | string
+    | number
+    | boolean
+    | object;
+  explanation?: string;
 }
 
 export interface CodingQuestion {
   id: string;
   title: string;
-  difficulty: "easy" | "medium" | "hard";
+  difficulty: "Easy" | "Medium" | "Hard";
   category: string;
   description: string;
   examples: {
@@ -19,14 +24,16 @@ export interface CodingQuestion {
   starterCode: string;
   testCases: TestCase[];
   solution?: string;
+  handlerFunction: string;
+  hints?: string[];
 }
 
 export const sampleQuestions: CodingQuestion[] = [
   {
     id: "two-sum",
     title: "Two Sum",
-    difficulty: "easy",
-    category: "Arrays & Hashing",
+    difficulty: "Easy",
+    category: "Arrays",
     description: `
 Given an array of integers \`nums\` and an integer \`target\`, return indices of the two numbers in the array such that they add up to \`target\`.
 
@@ -56,15 +63,16 @@ You can return the answer in any order.
 };`,
     testCases: [
       {
-        input: [[2, 7, 11, 15], 9],
+        input: [2, 7, 11, 15, 9],
         output: [0, 1],
+        explanation: "Because nums[0] + nums[1] = 2 + 7 = 9",
       },
       {
-        input: [[3, 2, 4], 6],
+        input: [3, 2, 4],
         output: [1, 2],
       },
       {
-        input: [[3, 3], 6],
+        input: [3, 3],
         output: [0, 1],
       },
     ],
@@ -80,5 +88,10 @@ You can return the answer in any order.
     }
     return [];
 }`,
+    handlerFunction: "twoSum",
+    hints: [
+      "Try using a hash map to store complements",
+      "Think about the time complexity",
+    ],
   },
 ];

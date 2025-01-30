@@ -11,11 +11,7 @@ interface CodeEditorProps {
   language?: string;
 }
 
-export function CodeEditor({
-  value,
-  onChange,
-  language = "javascript",
-}: CodeEditorProps) {
+export function CodeEditor({ value, onChange }: CodeEditorProps) {
   const { theme } = useTheme();
 
   return (
