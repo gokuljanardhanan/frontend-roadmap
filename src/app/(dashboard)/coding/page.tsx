@@ -34,7 +34,7 @@ export default function CodingPage() {
           return {
             testCase: index + 1,
             input: JSON.stringify(testCase.input),
-            error: error.message,
+            error: error instanceof Error ? error.message : "Unknown error",
           };
         }
       });
@@ -55,7 +55,9 @@ export default function CodingPage() {
 
       setOutput(outputText);
     } catch (error) {
-      setOutput(`Error: ${error.message}`);
+      setOutput(
+        `Error: ${error instanceof Error ? error.message : "Unknown error"}`
+      );
     }
   };
 

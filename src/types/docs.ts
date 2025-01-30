@@ -1,8 +1,16 @@
 export interface Author {
   id: string;
   name: string;
-  avatar?: string;
+  avatar: string;
 }
+
+export type DocFolder =
+  | "javascript"
+  | "css"
+  | "react"
+  | "system-design"
+  | "performance"
+  | "frontend-infra";
 
 export interface Doc {
   id: string;
@@ -15,5 +23,5 @@ export interface Doc {
   updatedAt: string;
   tags: string[];
   published: boolean;
-  folder: string;
+  folder: DocFolder;
 }

@@ -1,4 +1,3 @@
-import { Doc } from "@/types/docs";
 import { javascriptBasicsContent } from "./documentation/JavascriptBasics";
 import { NamasteJavascript1 } from "./documentation/NamasteJavascript1";
 import { NamasteJavascript2 } from "./documentation/NamasteJavascript2";

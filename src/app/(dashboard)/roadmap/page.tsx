@@ -13,6 +13,7 @@ import ReactFlow, {
   addEdge,
   useEdgesState,
   useNodesState,
+  MarkerType,
 } from "reactflow";
 import "reactflow/dist/style.css";
 import RoadmapNode from "@/components/features/roadmap/RoadmapNode";
@@ -36,18 +37,23 @@ const nodeWidth = 250;
 const nodeHeight = 80;
 const MAIN_PATH_X = 800;
 const HORIZONTAL_SPACING = 400;
+const BASE_VERTICAL_SPACING = 500; // Base vertical spacing
 const SIDE_OFFSET = 500;
 const CHILD_SPACING = 150;
+const CHILD_HEIGHT_MULTIPLIER = 100; // Additional space per child
 
 // Calculate required vertical space based on children count
-const calculateRequiredVerticalSpace = (node: RoadmapItem): number => {
-  if (!node.children) {
-    return 1;
-  }
+const calculateRequiredVerticalSpace = (node: RoadmapItem) => {
+  const directChildren = node.children?.length || 0;
+  const subChildren =
+    node.children?.reduce(
+      (acc: number, child: RoadmapItem) => acc + (child.children?.length || 0),
+      0
+    ) || 0;
+  const totalChildren = Math.max(directChildren, subChildren);
 
-  return node.children.reduce((acc, child) => {
-    return acc + calculateRequiredVerticalSpace(child);
-  }, 0);
+  // Return base spacing plus additional space per child
+  return BASE_VERTICAL_SPACING + totalChildren * CHILD_HEIGHT_MULTIPLIER;
 };
 
 // Helper to get main node position with dynamic spacing
@@ -66,7 +72,7 @@ const getMainNodePosition = (
     const previousNodeIndex = i * nodesPerRow + col;
     if (previousNodeIndex < previousNodes.length) {
       cumulativeY += calculateRequiredVerticalSpace(
-        previousNodes[previousNodeIndex] as RoadmapItem
+        previousNodes[previousNodeIndex]
       );
     }
   }
@@ -116,9 +122,8 @@ const getEdgeParams = (
     style: { stroke: "#666", strokeWidth: 2 },
     sourceHandle: "bottom",
     targetHandle: "top",
-    // Add custom routing for smoother paths
-    markerEnd: { type: "arrow" },
-  };
+    markerEnd: { type: MarkerType.Arrow },
+  } as Edge;
 };
 
 export default function RoadmapPage() {

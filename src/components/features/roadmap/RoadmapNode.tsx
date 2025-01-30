@@ -1,5 +1,6 @@
 import { Handle, NodeProps, Position } from "reactflow";
 import ProgressBar from "./ProgressBar";
+import { CSSProperties } from "react";
 
 interface RoadmapNodeData {
   label: string;
@@ -11,7 +12,7 @@ interface RoadmapNodeData {
 }
 
 export default function RoadmapNode({ data }: NodeProps<RoadmapNodeData>) {
-  const nodeStyle = {
+  const nodeStyle: CSSProperties = {
     backgroundColor: "rgb(67, 56, 202)", // Indigo for child nodes
     border: "1px solid",
     borderColor: "rgb(99, 102, 241)", // Lighter indigo border
@@ -22,7 +23,7 @@ export default function RoadmapNode({ data }: NodeProps<RoadmapNodeData>) {
     display: "flex",
     flexDirection: "column" as const,
     justifyContent: "center",
-    position: "relative",
+    position: "relative" as const,
     color: "white", // White text for better contrast
   };
 
