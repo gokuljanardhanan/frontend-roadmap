@@ -1,0 +1,39 @@
+.w-md-editor {
+  --md-editor-bg-color: transparent !important;
+  --md-editor-border-color: #e5e7eb !important;
+}
+
+.dark .w-md-editor {
+  --md-editor-border-color: #374151 !important;
+}
+
+.w-md-editor-text-pre > code,
+.w-md-editor-text-input {
+  font-size: 15px !important;
+  line-height: 1.6 !important;
+}
+
+.w-md-editor-toolbar {
+  border-bottom: 1px solid var(--md-editor-border-color) !important;
+  background-color: red !important;
+}
+
+.dark .w-md-editor-toolbar {
+  background-color: transparent !important;
+}
+
+.w-md-editor-toolbar ul li button {
+  color: inherit !important;
+}
+
+.dark .w-md-editor-toolbar ul li button {
+  color: #e5e7eb !important;
+}
+
+.w-md-editor-toolbar ul li.active button {
+  color: #2563eb !important;
+}
+
+.dark .w-md-editor-toolbar ul li.active button {
+  color: #60a5fa !important;
+} 

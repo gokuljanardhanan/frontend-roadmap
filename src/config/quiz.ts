@@ -1,0 +1,1295 @@
+export interface QuizOption {
+  id: string;
+  text: string;
+}
+
+export interface QuizQuestion {
+  id: string;
+  question: string;
+  description?: string;
+  options: QuizOption[];
+  correctAnswers: string[];
+  multipleCorrect?: boolean;
+  points?: number;
+  roadmapId: string;
+}
+
+export interface Quiz {
+  id: string;
+  title: string;
+  description?: string;
+  questions: QuizQuestion[];
+}
+
+export const sampleQuiz: Quiz = {
+  id: "frontend-basics",
+  title: "Frontend Development Basics",
+  description:
+    "Test your knowledge of fundamental frontend development concepts",
+  questions: [
+    {
+      id: "q1",
+      roadmapId: "internet-basics",
+      question:
+        "What is the primary protocol that enables communication between web browsers and servers?",
+      options: [
+        { id: "q1_a", text: "HTTP/HTTPS" },
+        { id: "q1_b", text: "FTP" },
+        { id: "q1_c", text: "SMTP" },
+        { id: "q1_d", text: "SSH" },
+      ],
+      correctAnswers: ["q1_a"],
+      points: 1,
+    },
+    {
+      id: "q2",
+      roadmapId: "http",
+      question: "Which HTTP status code indicates a successful request?",
+      options: [
+        { id: "q2_a", text: "200 OK" },
+        { id: "q2_b", text: "404 Not Found" },
+        { id: "q2_c", text: "500 Internal Server Error" },
+        { id: "q2_d", text: "301 Moved Permanently" },
+      ],
+      correctAnswers: ["q2_a"],
+      points: 1,
+    },
+    {
+      id: "q3",
+      roadmapId: "domain",
+      question: "What is the purpose of a domain name?",
+      options: [
+        {
+          id: "q3_a",
+          text: "To provide a human-readable address for websites",
+        },
+        { id: "q3_b", text: "To encrypt website data" },
+        { id: "q3_c", text: "To store website files" },
+        { id: "q3_d", text: "To speed up website loading" },
+      ],
+      correctAnswers: ["q3_a"],
+      points: 1,
+    },
+    {
+      id: "q4",
+      roadmapId: "hosting",
+      question: "What is web hosting?",
+      options: [
+        {
+          id: "q4_a",
+          text: "A service that stores website files and makes them accessible on the internet",
+        },
+        { id: "q4_b", text: "A tool for designing websites" },
+        { id: "q4_c", text: "A type of domain name" },
+        { id: "q4_d", text: "A programming language" },
+      ],
+      correctAnswers: ["q4_a"],
+      points: 1,
+    },
+    {
+      id: "q5",
+      roadmapId: "dns",
+      question: "What is the main function of DNS?",
+      options: [
+        { id: "q5_a", text: "To translate domain names into IP addresses" },
+        { id: "q5_b", text: "To create website backups" },
+        { id: "q5_c", text: "To style web pages" },
+        { id: "q5_d", text: "To compress web files" },
+      ],
+      correctAnswers: ["q5_a"],
+      points: 1,
+    },
+    {
+      id: "q6",
+      roadmapId: "browsers",
+      question:
+        "What is the main function of a web browser's rendering engine?",
+      options: [
+        { id: "q6_a", text: "To parse HTML and CSS and display the content" },
+        { id: "q6_b", text: "To store website passwords" },
+        { id: "q6_c", text: "To block advertisements" },
+        { id: "q6_d", text: "To compress images" },
+      ],
+      correctAnswers: ["q6_a"],
+      points: 1,
+    },
+    {
+      id: "q7",
+      roadmapId: "html-basics",
+      question:
+        "Which HTML element is used to define the main heading of a document?",
+      options: [
+        { id: "q7_a", text: "<h1>" },
+        { id: "q7_b", text: "<header>" },
+        { id: "q7_c", text: "<heading>" },
+        { id: "q7_d", text: "<main>" },
+      ],
+      correctAnswers: ["q7_a"],
+      points: 1,
+    },
+    {
+      id: "q8",
+      roadmapId: "semantic-html",
+      question:
+        "Which HTML element represents a standalone section of content?",
+      options: [
+        { id: "q8_a", text: "<article>" },
+        { id: "q8_b", text: "<div>" },
+        { id: "q8_c", text: "<span>" },
+        { id: "q8_d", text: "<container>" },
+      ],
+      correctAnswers: ["q8_a"],
+      points: 1,
+    },
+    {
+      id: "q9",
+      roadmapId: "forms-validation",
+      question:
+        "Which HTML attribute is used to specify that a form field must be filled out?",
+      options: [
+        { id: "q9_a", text: "required" },
+        { id: "q9_b", text: "validate" },
+        { id: "q9_c", text: "mandatory" },
+        { id: "q9_d", text: "important" },
+      ],
+      correctAnswers: ["q9_a"],
+      points: 1,
+    },
+    {
+      id: "q10",
+      roadmapId: "html-best-practices",
+      question: "Which is a best practice for HTML forms?",
+      options: [
+        {
+          id: "q10_a",
+          text: "Using labels with for attributes that match input IDs",
+        },
+        { id: "q10_b", text: "Using tables for form layouts" },
+        { id: "q10_c", text: "Using multiple h1 tags for emphasis" },
+        { id: "q10_d", text: "Using inline styles for form elements" },
+      ],
+      correctAnswers: ["q10_a"],
+      points: 1,
+    },
+    {
+      id: "q11",
+      roadmapId: "accessibility",
+      question:
+        "Which attribute provides alternative text for images to assist screen readers?",
+      options: [
+        { id: "q11_a", text: "alt" },
+        { id: "q11_b", text: "title" },
+        { id: "q11_c", text: "description" },
+        { id: "q11_d", text: "caption" },
+      ],
+      correctAnswers: ["q11_a"],
+      points: 1,
+    },
+    {
+      id: "q12",
+      roadmapId: "seo",
+      question:
+        "Which HTML element is used to define the title of a document in search engine results?",
+      options: [
+        { id: "q12_a", text: "<title>" },
+        { id: "q12_b", text: "<meta>" },
+        { id: "q12_c", text: "<head>" },
+        { id: "q12_d", text: "<seo>" },
+      ],
+      correctAnswers: ["q12_a"],
+      points: 1,
+    },
+    {
+      id: "q13",
+      roadmapId: "css-basics",
+      question:
+        "Which CSS property is used to change the text color of an element?",
+      options: [
+        { id: "q13_a", text: "color" },
+        { id: "q13_b", text: "text-color" },
+        { id: "q13_c", text: "font-color" },
+        { id: "q13_d", text: "text-style" },
+      ],
+      correctAnswers: ["q13_a"],
+      points: 1,
+    },
+    {
+      id: "q14",
+      roadmapId: "css-layouts",
+      question:
+        "Which CSS layout properties can be used to center an element horizontally?",
+      description: "Select all that apply",
+      options: [
+        { id: "q14_a", text: "margin: 0 auto" },
+        { id: "q14_b", text: "text-align: center" },
+        { id: "q14_c", text: "display: flex; justify-content: center" },
+        { id: "q14_d", text: "float: center" },
+      ],
+      correctAnswers: ["q14_a", "q14_b", "q14_c"],
+      multipleCorrect: true,
+      points: 2,
+    },
+    {
+      id: "q15",
+      roadmapId: "css-floats",
+      question: "What is the correct way to clear floats in CSS?",
+      options: [
+        { id: "q15_a", text: "clear: both" },
+        { id: "q15_b", text: "float: none" },
+        { id: "q15_c", text: "display: block" },
+        { id: "q15_d", text: "position: static" },
+      ],
+      correctAnswers: ["q15_a"],
+      points: 1,
+    },
+    {
+      id: "q16",
+      roadmapId: "css-positioning",
+      question:
+        "Which position value removes an element from the normal document flow?",
+      options: [
+        { id: "q16_a", text: "absolute" },
+        { id: "q16_b", text: "relative" },
+        { id: "q16_c", text: "static" },
+        { id: "q16_d", text: "sticky" },
+      ],
+      correctAnswers: ["q16_a"],
+      points: 1,
+    },
+    {
+      id: "q17",
+      roadmapId: "css-display",
+      question:
+        "Which display property makes an element behave like an inline element but allows height and width?",
+      options: [
+        { id: "q17_a", text: "inline-block" },
+        { id: "q17_b", text: "block" },
+        { id: "q17_c", text: "inline" },
+        { id: "q17_d", text: "flex" },
+      ],
+      correctAnswers: ["q17_a"],
+      points: 1,
+    },
+    {
+      id: "q18",
+      roadmapId: "css-box-model",
+      question:
+        "What is the correct order of the CSS box model from outside to inside?",
+      options: [
+        { id: "q18_a", text: "margin, border, padding, content" },
+        { id: "q18_b", text: "border, margin, content, padding" },
+        { id: "q18_c", text: "padding, border, margin, content" },
+        { id: "q18_d", text: "content, padding, border, margin" },
+      ],
+      correctAnswers: ["q18_a"],
+      points: 1,
+    },
+    {
+      id: "q19",
+      roadmapId: "css-css-grid",
+      question:
+        "Which CSS Grid property is used to define the size of grid tracks?",
+      options: [
+        { id: "q19_a", text: "grid-template-columns" },
+        { id: "q19_b", text: "grid-gap" },
+        { id: "q19_c", text: "grid-area" },
+        { id: "q19_d", text: "grid-auto-flow" },
+      ],
+      correctAnswers: ["q19_a"],
+      points: 1,
+    },
+    {
+      id: "q20",
+      roadmapId: "css-flex-box",
+      question:
+        "Which Flexbox property is used to align items along the cross axis?",
+      options: [
+        { id: "q20_a", text: "align-items" },
+        { id: "q20_b", text: "justify-content" },
+        { id: "q20_c", text: "flex-direction" },
+        { id: "q20_d", text: "flex-wrap" },
+      ],
+      correctAnswers: ["q20_a"],
+      points: 1,
+    },
+    {
+      id: "q21",
+      roadmapId: "css-responsive-design",
+      question: "Which CSS unit is best for creating responsive layouts?",
+      description: "Select all that apply",
+      options: [
+        { id: "q21_a", text: "rem" },
+        { id: "q21_b", text: "vw (viewport width)" },
+        { id: "q21_c", text: "%" },
+        { id: "q21_d", text: "px" },
+      ],
+      correctAnswers: ["q21_a", "q21_b", "q21_c"],
+      multipleCorrect: true,
+      points: 2,
+    },
+    {
+      id: "q22",
+      roadmapId: "js-syntax-constructs",
+      question:
+        "Which of the following are valid ways to declare variables in modern JavaScript?",
+      description: "Select all that apply",
+      options: [
+        { id: "q22_a", text: "let x = 5;" },
+        { id: "q22_b", text: "const y = 10;" },
+        { id: "q22_c", text: "var z = 15;" },
+        { id: "q22_d", text: "variable w = 20;" },
+      ],
+      correctAnswers: ["q22_a", "q22_b", "q22_c"],
+      multipleCorrect: true,
+      points: 2,
+    },
+    {
+      id: "q23",
+      roadmapId: "js-dom-manipulation",
+      question:
+        "Which method is used to select an element by its ID in JavaScript?",
+      options: [
+        { id: "q23_a", text: "document.getElementById()" },
+        { id: "q23_b", text: "document.querySelector()" },
+        { id: "q23_c", text: "document.getElementByName()" },
+        { id: "q23_d", text: "document.getElementsByClass()" },
+      ],
+      correctAnswers: ["q23_a"],
+      points: 1,
+    },
+    {
+      id: "q24",
+      roadmapId: "js-fetch-api-ajax",
+      question: "What is the correct way to handle errors in a fetch request?",
+      options: [
+        { id: "q24_a", text: "Using .catch() after .then()" },
+        { id: "q24_b", text: "Using try/catch only" },
+        { id: "q24_c", text: "Using if/else statements" },
+        { id: "q24_d", text: "Using error event listeners" },
+      ],
+      correctAnswers: ["q24_a"],
+      points: 1,
+    },
+    {
+      id: "q25",
+      roadmapId: "js-es6-modular",
+      question: "Which statement correctly exports a function in ES6 modules?",
+      options: [
+        { id: "q25_a", text: "export default function myFunction() {}" },
+        { id: "q25_b", text: "module.exports = myFunction;" },
+        { id: "q25_c", text: "exports.myFunction = function() {}" },
+        { id: "q25_d", text: "export = myFunction;" },
+      ],
+      correctAnswers: ["q25_a"],
+      points: 1,
+    },
+    {
+      id: "q26",
+      roadmapId: "js-hoisting",
+      question: "What is the output of: console.log(x); var x = 5;",
+      options: [
+        { id: "q26_a", text: "undefined" },
+        { id: "q26_b", text: "5" },
+        { id: "q26_c", text: "null" },
+        { id: "q26_d", text: "ReferenceError" },
+      ],
+      correctAnswers: ["q26_a"],
+      points: 1,
+    },
+    {
+      id: "q27",
+      roadmapId: "js-event-bubbling",
+      question: "What is event bubbling in JavaScript?",
+      options: [
+        {
+          id: "q27_a",
+          text: "Event propagation from child to parent elements",
+        },
+        {
+          id: "q27_b",
+          text: "Event propagation from parent to child elements",
+        },
+        { id: "q27_c", text: "Creating multiple event listeners" },
+        { id: "q27_d", text: "Removing event listeners" },
+      ],
+      correctAnswers: ["q27_a"],
+      points: 1,
+    },
+    {
+      id: "q28",
+      roadmapId: "js-scope",
+      question: "What type of scope does a variable declared with 'let' have?",
+      options: [
+        { id: "q28_a", text: "Block scope" },
+        { id: "q28_b", text: "Function scope" },
+        { id: "q28_c", text: "Global scope" },
+        { id: "q28_d", text: "Module scope" },
+      ],
+      correctAnswers: ["q28_a"],
+      points: 1,
+    },
+    {
+      id: "q29",
+      roadmapId: "js-prototype",
+      question: "What is JavaScript prototype inheritance?",
+      options: [
+        {
+          id: "q29_a",
+          text: "A way to share properties and methods between objects",
+        },
+        { id: "q29_b", text: "A way to create private variables" },
+        { id: "q29_c", text: "A way to implement interfaces" },
+        { id: "q29_d", text: "A way to create static methods" },
+      ],
+      correctAnswers: ["q29_a"],
+      points: 1,
+    },
+    {
+      id: "q30",
+      roadmapId: "js-shadow-dom",
+      question: "What is the main purpose of Shadow DOM?",
+      options: [
+        {
+          id: "q30_a",
+          text: "To encapsulate DOM and styling from the main document",
+        },
+        { id: "q30_b", text: "To improve JavaScript performance" },
+        { id: "q30_c", text: "To create browser extensions" },
+        { id: "q30_d", text: "To handle HTTP requests" },
+      ],
+      correctAnswers: ["q30_a"],
+      points: 1,
+    },
+    {
+      id: "q31",
+      roadmapId: "js-strict",
+      question: "What does 'use strict' do in JavaScript?",
+      description: "Select all that apply",
+      options: [
+        { id: "q31_a", text: "Prevents using undeclared variables" },
+        { id: "q31_b", text: "Makes eval() safer" },
+        { id: "q31_c", text: "Prevents using delete on variables" },
+        { id: "q31_d", text: "Increases code performance" },
+      ],
+      correctAnswers: ["q31_a", "q31_b", "q31_c"],
+      multipleCorrect: true,
+      points: 2,
+    },
+    {
+      id: "q32",
+      roadmapId: "basic-git-usage",
+      question:
+        "Which Git command is used to create a new branch and switch to it?",
+      options: [
+        { id: "q32_a", text: "git checkout -b branch-name" },
+        { id: "q32_b", text: "git branch new branch-name" },
+        { id: "q32_c", text: "git create branch-name" },
+        { id: "q32_d", text: "git switch new branch-name" },
+      ],
+      correctAnswers: ["q32_a"],
+      points: 1,
+    },
+    {
+      id: "q33",
+      roadmapId: "github",
+      question: "What is a Pull Request in GitHub?",
+      options: [
+        {
+          id: "q33_a",
+          text: "A request to merge changes from one branch to another",
+        },
+        { id: "q33_b", text: "A request to download code from GitHub" },
+        { id: "q33_c", text: "A request to create a new repository" },
+        { id: "q33_d", text: "A request to delete a branch" },
+      ],
+      correctAnswers: ["q33_a"],
+      points: 1,
+    },
+    {
+      id: "q34",
+      roadmapId: "gitlab",
+      question:
+        "What is a unique feature of GitLab compared to other VCS platforms?",
+      options: [
+        {
+          id: "q34_a",
+          text: "Built-in CI/CD pipeline functionality",
+        },
+        { id: "q34_b", text: "Version control capabilities" },
+        { id: "q34_c", text: "Repository hosting" },
+        { id: "q34_d", text: "Code review features" },
+      ],
+      correctAnswers: ["q34_a"],
+      points: 1,
+    },
+    {
+      id: "q35",
+      roadmapId: "npm",
+      question: "Which command installs a package and adds it to package.json?",
+      options: [
+        { id: "q35_a", text: "npm install package-name --save" },
+        { id: "q35_b", text: "npm add package-name" },
+        { id: "q35_c", text: "npm get package-name" },
+        { id: "q35_d", text: "npm include package-name" },
+      ],
+      correctAnswers: ["q35_a"],
+      points: 1,
+    },
+    {
+      id: "q36",
+      roadmapId: "yarn",
+      question: "What is a key advantage of Yarn over npm?",
+      options: [
+        {
+          id: "q36_a",
+          text: "Parallel package installation for better performance",
+        },
+        { id: "q36_b", text: "Larger package registry" },
+        { id: "q36_c", text: "Better security by default" },
+        { id: "q36_d", text: "Simpler command syntax" },
+      ],
+      correctAnswers: ["q36_a"],
+      points: 1,
+    },
+    {
+      id: "q37",
+      roadmapId: "pnpm",
+      question: "How does pnpm save disk space compared to npm?",
+      options: [
+        {
+          id: "q37_a",
+          text: "By using hard links to share packages between projects",
+        },
+        { id: "q37_b", text: "By compressing all packages" },
+        { id: "q37_c", text: "By downloading smaller package versions" },
+        { id: "q37_d", text: "By removing unused packages automatically" },
+      ],
+      correctAnswers: ["q37_a"],
+      points: 1,
+    },
+    {
+      id: "q38",
+      roadmapId: "react",
+      question:
+        "What is the correct way to create a functional component in React?",
+      options: [
+        {
+          id: "q38_a",
+          text: "function MyComponent() { return <div>Hello</div>; }",
+        },
+        {
+          id: "q38_b",
+          text: "class MyComponent { render() { return <div>Hello</div>; } }",
+        },
+        { id: "q38_c", text: "const MyComponent = <div>Hello</div>;" },
+        { id: "q38_d", text: "new Component(<div>Hello</div>);" },
+      ],
+      correctAnswers: ["q38_a"],
+      points: 1,
+    },
+    {
+      id: "q39",
+      roadmapId: "vuejs",
+      question: "What is the Vue.js template syntax for two-way data binding?",
+      options: [
+        { id: "q39_a", text: "v-model" },
+        { id: "q39_b", text: "v-bind" },
+        { id: "q39_c", text: "v-on" },
+        { id: "q39_d", text: "v-two-way" },
+      ],
+      correctAnswers: ["q39_a"],
+      points: 1,
+    },
+    {
+      id: "q40",
+      roadmapId: "angular",
+      question: "Which decorator is used to define an Angular component?",
+      options: [
+        { id: "q40_a", text: "@Component" },
+        { id: "q40_b", text: "@NgComponent" },
+        { id: "q40_c", text: "@View" },
+        { id: "q40_d", text: "@Template" },
+      ],
+      correctAnswers: ["q40_a"],
+      points: 1,
+    },
+    {
+      id: "q41",
+      roadmapId: "nextjs",
+      question: "What is a key feature of Next.js?",
+      description: "Select all that apply",
+      options: [
+        { id: "q41_a", text: "Server-side rendering (SSR)" },
+        { id: "q41_b", text: "File-based routing" },
+        { id: "q41_c", text: "API routes" },
+        { id: "q41_d", text: "Built-in state management" },
+      ],
+      correctAnswers: ["q41_a", "q41_b", "q41_c"],
+      multipleCorrect: true,
+      points: 2,
+    },
+    {
+      id: "q42",
+      roadmapId: "tailwind",
+      question: "What is a key feature of Tailwind CSS?",
+      description: "Select all that apply",
+      options: [
+        { id: "q42_a", text: "Utility-first approach" },
+        { id: "q42_b", text: "Pre-built components" },
+        { id: "q42_c", text: "JIT (Just-In-Time) compilation" },
+        { id: "q42_d", text: "Built-in dark mode support" },
+      ],
+      correctAnswers: ["q42_a", "q42_c", "q42_d"],
+      multipleCorrect: true,
+      points: 2,
+    },
+    {
+      id: "q43",
+      roadmapId: "sass",
+      question: "Which feature is specific to Sass?",
+      options: [
+        {
+          id: "q43_a",
+          text: "Nested selectors and variables using @",
+        },
+        { id: "q43_b", text: "Direct CSS syntax" },
+        { id: "q43_c", text: "Runtime styling" },
+        { id: "q43_d", text: "Browser-native support" },
+      ],
+      correctAnswers: ["q43_a"],
+      points: 1,
+    },
+    {
+      id: "q44",
+      roadmapId: "postcss",
+      question: "What is the main purpose of PostCSS?",
+      options: [
+        {
+          id: "q44_a",
+          text: "Transform CSS with JavaScript plugins",
+        },
+        { id: "q44_b", text: "Provide pre-built CSS components" },
+        { id: "q44_c", text: "Replace CSS preprocessors" },
+        { id: "q44_d", text: "Minify CSS only" },
+      ],
+      correctAnswers: ["q44_a"],
+      points: 1,
+    },
+    {
+      id: "q45",
+      roadmapId: "linters-formatters",
+      question:
+        "Which tools are commonly used for JavaScript/TypeScript linting and formatting?",
+      description: "Select all that apply",
+      options: [
+        { id: "q45_a", text: "ESLint" },
+        { id: "q45_b", text: "Prettier" },
+        { id: "q45_c", text: "TSLint" },
+        { id: "q45_d", text: "Babel" },
+      ],
+      correctAnswers: ["q45_a", "q45_b"],
+      multipleCorrect: true,
+      points: 2,
+    },
+    {
+      id: "q46",
+      roadmapId: "vite",
+      question: "What makes Vite different from traditional bundlers?",
+      options: [
+        {
+          id: "q46_a",
+          text: "Native ES modules for dev server and fast HMR",
+        },
+        { id: "q46_b", text: "Larger bundle sizes" },
+        { id: "q46_c", text: "No build step required" },
+        { id: "q46_d", text: "Runtime compilation only" },
+      ],
+      correctAnswers: ["q46_a"],
+      points: 1,
+    },
+    {
+      id: "q47",
+      roadmapId: "esbuild",
+      question: "What is a key advantage of esbuild?",
+      options: [
+        {
+          id: "q47_a",
+          text: "Extremely fast build speeds due to Go implementation",
+        },
+        { id: "q47_b", text: "More configuration options" },
+        { id: "q47_c", text: "Better code optimization" },
+        { id: "q47_d", text: "Larger ecosystem" },
+      ],
+      correctAnswers: ["q47_a"],
+      points: 1,
+    },
+    {
+      id: "q48",
+      roadmapId: "webpack",
+      question: "What is a core concept in Webpack?",
+      description: "Select all that apply",
+      options: [
+        { id: "q48_a", text: "Entry points" },
+        { id: "q48_b", text: "Loaders" },
+        { id: "q48_c", text: "Plugins" },
+        { id: "q48_d", text: "Output" },
+      ],
+      correctAnswers: ["q48_a", "q48_b", "q48_c", "q48_d"],
+      multipleCorrect: true,
+      points: 2,
+    },
+    {
+      id: "q49",
+      roadmapId: "rollup",
+      question: "What is Rollup best suited for?",
+      options: [
+        {
+          id: "q49_a",
+          text: "Creating libraries with efficient tree-shaking",
+        },
+        { id: "q49_b", text: "Building large applications" },
+        { id: "q49_c", text: "Development server features" },
+        { id: "q49_d", text: "Processing non-JavaScript assets" },
+      ],
+      correctAnswers: ["q49_a"],
+      points: 1,
+    },
+    {
+      id: "q50",
+      roadmapId: "parcel",
+      question: "What is a key feature of Parcel?",
+      options: [
+        {
+          id: "q50_a",
+          text: "Zero configuration bundling",
+        },
+        { id: "q50_b", text: "Complex configuration options" },
+        { id: "q50_c", text: "Manual dependency management" },
+        { id: "q50_d", text: "No support for multiple entry points" },
+      ],
+      correctAnswers: ["q50_a"],
+      points: 1,
+    },
+    {
+      id: "q51",
+      roadmapId: "jest",
+      question: "What is the correct way to write a test case in Jest?",
+      options: [
+        {
+          id: "q51_a",
+          text: "test('description', () => { expect(result).toBe(expected); })",
+        },
+        { id: "q51_b", text: "assert(result === expected)" },
+        { id: "q51_c", text: "verify('description', result, expected)" },
+        { id: "q51_d", text: "check(() => result === expected)" },
+      ],
+      correctAnswers: ["q51_a"],
+      points: 1,
+    },
+    {
+      id: "q52",
+      roadmapId: "vitest",
+      question: "What makes Vitest different from Jest?",
+      options: [
+        {
+          id: "q52_a",
+          text: "Native ESM support and Vite integration",
+        },
+        { id: "q52_b", text: "Larger ecosystem" },
+        { id: "q52_c", text: "Better assertion library" },
+        { id: "q52_d", text: "More testing features" },
+      ],
+      correctAnswers: ["q52_a"],
+      points: 1,
+    },
+    {
+      id: "q53",
+      roadmapId: "cypress",
+      question: "What type of testing is Cypress primarily used for?",
+      options: [
+        {
+          id: "q53_a",
+          text: "End-to-end testing and component testing",
+        },
+        { id: "q53_b", text: "Unit testing only" },
+        { id: "q53_c", text: "Performance testing" },
+        { id: "q53_d", text: "Security testing" },
+      ],
+      correctAnswers: ["q53_a"],
+      points: 1,
+    },
+    {
+      id: "q54",
+      roadmapId: "playwright",
+      question: "What is a key advantage of Playwright?",
+      options: [
+        {
+          id: "q54_a",
+          text: "Cross-browser testing with multiple browser engines",
+        },
+        { id: "q54_b", text: "Simpler syntax" },
+        { id: "q54_c", text: "Faster execution" },
+        { id: "q54_d", text: "Better reporting" },
+      ],
+      correctAnswers: ["q54_a"],
+      points: 1,
+    },
+    {
+      id: "q55",
+      roadmapId: "jwt",
+      question: "What are the three parts of a JWT token?",
+      options: [
+        {
+          id: "q55_a",
+          text: "Header, Payload, Signature",
+        },
+        { id: "q55_b", text: "Username, Password, Token" },
+        { id: "q55_c", text: "Auth, Body, Verification" },
+        { id: "q55_d", text: "Start, Middle, End" },
+      ],
+      correctAnswers: ["q55_a"],
+      points: 1,
+    },
+    {
+      id: "q56",
+      roadmapId: "oauth",
+      question: "What is OAuth primarily used for?",
+      options: [
+        {
+          id: "q56_a",
+          text: "Delegated authorization to third-party applications",
+        },
+        { id: "q56_b", text: "Password encryption" },
+        { id: "q56_c", text: "Database security" },
+        { id: "q56_d", text: "Network protection" },
+      ],
+      correctAnswers: ["q56_a"],
+      points: 1,
+    },
+    {
+      id: "q57",
+      roadmapId: "sso",
+      question: "What is Single Sign-On (SSO)?",
+      options: [
+        {
+          id: "q57_a",
+          text: "One-time authentication for multiple applications",
+        },
+        { id: "q57_b", text: "Multiple passwords for one application" },
+        { id: "q57_c", text: "Two-factor authentication" },
+        { id: "q57_d", text: "Password recovery system" },
+      ],
+      correctAnswers: ["q57_a"],
+      points: 1,
+    },
+    {
+      id: "q58",
+      roadmapId: "basic-auth",
+      question: "How is Basic Authentication typically implemented?",
+      options: [
+        {
+          id: "q58_a",
+          text: "Username and password sent in Authorization header",
+        },
+        { id: "q58_b", text: "Token-based authentication" },
+        { id: "q58_c", text: "OAuth flow" },
+        { id: "q58_d", text: "Session cookies" },
+      ],
+      correctAnswers: ["q58_a"],
+      points: 1,
+    },
+    {
+      id: "q59",
+      roadmapId: "session-auth",
+      question:
+        "What is stored on the client side in session-based authentication?",
+      options: [
+        {
+          id: "q59_a",
+          text: "Session ID in a cookie",
+        },
+        { id: "q59_b", text: "User credentials" },
+        { id: "q59_c", text: "Full session data" },
+        { id: "q59_d", text: "User permissions" },
+      ],
+      correctAnswers: ["q59_a"],
+      points: 1,
+    },
+    {
+      id: "q60",
+      roadmapId: "https",
+      question: "What does HTTPS provide?",
+      description: "Select all that apply",
+      options: [
+        { id: "q60_a", text: "Data encryption" },
+        { id: "q60_b", text: "Server authentication" },
+        { id: "q60_c", text: "Data integrity" },
+        { id: "q60_d", text: "Faster connection" },
+      ],
+      correctAnswers: ["q60_a", "q60_b", "q60_c"],
+      multipleCorrect: true,
+      points: 2,
+    },
+    {
+      id: "q61",
+      roadmapId: "cors",
+      question: "What is the purpose of CORS?",
+      options: [
+        {
+          id: "q61_a",
+          text: "Control which domains can access your resources",
+        },
+        { id: "q61_b", text: "Compress HTTP responses" },
+        { id: "q61_c", text: "Cache browser requests" },
+        { id: "q61_d", text: "Validate form inputs" },
+      ],
+      correctAnswers: ["q61_a"],
+      points: 1,
+    },
+    {
+      id: "q62",
+      roadmapId: "content-security-policy",
+      question: "What does Content Security Policy help prevent?",
+      description: "Select all that apply",
+      options: [
+        { id: "q62_a", text: "Cross-site scripting (XSS) attacks" },
+        { id: "q62_b", text: "Clickjacking attacks" },
+        { id: "q62_c", text: "Code injection attacks" },
+        { id: "q62_d", text: "Network latency" },
+      ],
+      correctAnswers: ["q62_a", "q62_b", "q62_c"],
+      multipleCorrect: true,
+      points: 2,
+    },
+    {
+      id: "q63",
+      roadmapId: "owasp-security-risks",
+      question: "Which of these are OWASP Top 10 security risks?",
+      description: "Select all that apply",
+      options: [
+        { id: "q63_a", text: "Injection" },
+        { id: "q63_b", text: "Broken Authentication" },
+        { id: "q63_c", text: "Sensitive Data Exposure" },
+        { id: "q63_d", text: "Poor Performance" },
+      ],
+      correctAnswers: ["q63_a", "q63_b", "q63_c"],
+      multipleCorrect: true,
+      points: 2,
+    },
+    {
+      id: "q64",
+      roadmapId: "html-templates",
+      question: "What is the purpose of HTML templates?",
+      options: [
+        {
+          id: "q64_a",
+          text: "Define reusable HTML content that isn't rendered until needed",
+        },
+        { id: "q64_b", text: "Create CSS styles" },
+        { id: "q64_c", text: "Handle form submissions" },
+        { id: "q64_d", text: "Store JavaScript code" },
+      ],
+      correctAnswers: ["q64_a"],
+      points: 1,
+    },
+    {
+      id: "q65",
+      roadmapId: "custom-elements",
+      question: "How do you create a custom element in JavaScript?",
+      options: [
+        {
+          id: "q65_a",
+          text: "customElements.define('custom-element', class extends HTMLElement)",
+        },
+        { id: "q65_b", text: "document.createElement('custom-element')" },
+        { id: "q65_c", text: "new CustomElement()" },
+        { id: "q65_d", text: "Element.register('custom-element')" },
+      ],
+      correctAnswers: ["q65_a"],
+      points: 1,
+    },
+    {
+      id: "q66",
+      roadmapId: "shadow-dom",
+      question: "What is the main benefit of Shadow DOM?",
+      options: [
+        {
+          id: "q66_a",
+          text: "Encapsulation of styles and DOM from the main document",
+        },
+        { id: "q66_b", text: "Faster page loading" },
+        { id: "q66_c", text: "Better SEO" },
+        { id: "q66_d", text: "Reduced memory usage" },
+      ],
+      correctAnswers: ["q66_a"],
+      points: 1,
+    },
+    {
+      id: "q67",
+      roadmapId: "typescript",
+      question: "What are the key benefits of TypeScript?",
+      description: "Select all that apply",
+      options: [
+        { id: "q67_a", text: "Static type checking" },
+        { id: "q67_b", text: "Enhanced IDE support" },
+        { id: "q67_c", text: "Object-oriented features" },
+        { id: "q67_d", text: "Faster runtime performance" },
+      ],
+      correctAnswers: ["q67_a", "q67_b", "q67_c"],
+      multipleCorrect: true,
+      points: 2,
+    },
+    {
+      id: "q68",
+      roadmapId: "nextjs-ssr",
+      question: "What is a key feature of Next.js SSR?",
+      description: "Select all that apply",
+      options: [
+        { id: "q68_a", text: "Server-side rendering of pages" },
+        { id: "q68_b", text: "Automatic code splitting" },
+        { id: "q68_c", text: "API routes" },
+        { id: "q68_d", text: "Hot module replacement" },
+      ],
+      correctAnswers: ["q68_a", "q68_b", "q68_c"],
+      multipleCorrect: true,
+      points: 2,
+    },
+    {
+      id: "q69",
+      roadmapId: "astro-ssr",
+      question: "What makes Astro unique for SSR?",
+      options: [
+        {
+          id: "q69_a",
+          text: "Partial hydration with 'islands architecture'",
+        },
+        { id: "q69_b", text: "Full page reloads only" },
+        { id: "q69_c", text: "Client-side only rendering" },
+        { id: "q69_d", text: "No JavaScript support" },
+      ],
+      correctAnswers: ["q69_a"],
+      points: 1,
+    },
+    {
+      id: "q70",
+      roadmapId: "react-router-ssr",
+      question: "How does React Router support SSR?",
+      options: [
+        {
+          id: "q70_a",
+          text: "Using StaticRouter for server-side rendering",
+        },
+        { id: "q70_b", text: "Client-side routing only" },
+        { id: "q70_c", text: "No SSR support" },
+        { id: "q70_d", text: "Using window.location only" },
+      ],
+      correctAnswers: ["q70_a"],
+      points: 1,
+    },
+    {
+      id: "q71",
+      roadmapId: "angular-ssr",
+      question: "What is Angular Universal used for?",
+      options: [
+        {
+          id: "q71_a",
+          text: "Server-side rendering Angular applications",
+        },
+        { id: "q71_b", text: "Creating mobile apps" },
+        { id: "q71_c", text: "Testing Angular components" },
+        { id: "q71_d", text: "Managing state in Angular" },
+      ],
+      correctAnswers: ["q71_a"],
+      points: 1,
+    },
+    {
+      id: "q72",
+      roadmapId: "nuxtjs-ssr",
+      question: "What is a key feature of Nuxt.js SSR?",
+      options: [
+        {
+          id: "q72_a",
+          text: "Automatic code splitting and server-side rendering",
+        },
+        { id: "q72_b", text: "React component support" },
+        { id: "q72_c", text: "Angular templates" },
+        { id: "q72_d", text: "WordPress integration" },
+      ],
+      correctAnswers: ["q72_a"],
+      points: 1,
+    },
+    {
+      id: "q73",
+      roadmapId: "sveltekitsr",
+      question: "What makes SvelteKit's SSR approach unique?",
+      options: [
+        {
+          id: "q73_a",
+          text: "Zero-config SSR with adaptive rendering strategies",
+        },
+        { id: "q73_b", text: "Client-side only rendering" },
+        { id: "q73_c", text: "No JavaScript shipping" },
+        { id: "q73_d", text: "PHP backend requirement" },
+      ],
+      correctAnswers: ["q73_a"],
+      points: 1,
+    },
+    {
+      id: "q74",
+      roadmapId: "apollo",
+      question: "What is Apollo Client primarily used for?",
+      options: [
+        {
+          id: "q74_a",
+          text: "Managing GraphQL data and state in frontend applications",
+        },
+        { id: "q74_b", text: "Creating REST APIs" },
+        { id: "q74_c", text: "Database management" },
+        { id: "q74_d", text: "Server-side rendering" },
+      ],
+      correctAnswers: ["q74_a"],
+      points: 1,
+    },
+    {
+      id: "q75",
+      roadmapId: "relay-modern",
+      question: "What is a key feature of Relay Modern?",
+      options: [
+        {
+          id: "q75_a",
+          text: "Compile-time GraphQL optimizations and type safety",
+        },
+        { id: "q75_b", text: "Runtime query building" },
+        { id: "q75_c", text: "REST API integration" },
+        { id: "q75_d", text: "Backend database management" },
+      ],
+      correctAnswers: ["q75_a"],
+      points: 1,
+    },
+    {
+      id: "q76",
+      roadmapId: "storage",
+      question: "Which storage options are available in PWAs?",
+      description: "Select all that apply",
+      options: [
+        { id: "q76_a", text: "IndexedDB" },
+        { id: "q76_b", text: "Cache Storage API" },
+        { id: "q76_c", text: "Local Storage" },
+        { id: "q76_d", text: "Session Storage" },
+      ],
+      correctAnswers: ["q76_a", "q76_b", "q76_c", "q76_d"],
+      multipleCorrect: true,
+      points: 2,
+    },
+    {
+      id: "q77",
+      roadmapId: "web-sockets",
+      question: "What is the main purpose of WebSockets in PWAs?",
+      options: [
+        {
+          id: "q77_a",
+          text: "Real-time bidirectional communication between client and server",
+        },
+        { id: "q77_b", text: "Offline data storage" },
+        { id: "q77_c", text: "Push notifications" },
+        { id: "q77_d", text: "File system access" },
+      ],
+      correctAnswers: ["q77_a"],
+      points: 1,
+    },
+    {
+      id: "q78",
+      roadmapId: "service-workers",
+      question: "What can Service Workers do in a PWA?",
+      description: "Select all that apply",
+      options: [
+        { id: "q78_a", text: "Cache resources for offline use" },
+        { id: "q78_b", text: "Handle push notifications" },
+        { id: "q78_c", text: "Intercept network requests" },
+        { id: "q78_d", text: "Background sync" },
+      ],
+      correctAnswers: ["q78_a", "q78_b", "q78_c", "q78_d"],
+      multipleCorrect: true,
+      points: 2,
+    },
+    {
+      id: "q79",
+      roadmapId: "location",
+      question: "How can a PWA access user location?",
+      options: [
+        {
+          id: "q79_a",
+          text: "Using the Geolocation API",
+        },
+        { id: "q79_b", text: "Through IP address only" },
+        { id: "q79_c", text: "Using device sensors directly" },
+        { id: "q79_d", text: "From browser settings" },
+      ],
+      correctAnswers: ["q79_a"],
+      points: 1,
+    },
+    {
+      id: "q80",
+      roadmapId: "notifications",
+      question: "What is required to implement Push Notifications in a PWA?",
+      description: "Select all that apply",
+      options: [
+        { id: "q80_a", text: "Service Worker registration" },
+        { id: "q80_b", text: "User permission" },
+        { id: "q80_c", text: "Push API implementation" },
+        { id: "q80_d", text: "Notifications API usage" },
+      ],
+      correctAnswers: ["q80_a", "q80_b", "q80_c", "q80_d"],
+      multipleCorrect: true,
+      points: 2,
+    },
+    {
+      id: "q81",
+      roadmapId: "device-orientation",
+      question: "How can a PWA detect device orientation changes?",
+      options: [
+        {
+          id: "q81_a",
+          text: "Using the DeviceOrientation API",
+        },
+        { id: "q81_b", text: "Through CSS media queries" },
+        { id: "q81_c", text: "Using screen resolution" },
+        { id: "q81_d", text: "With viewport dimensions" },
+      ],
+      correctAnswers: ["q81_a"],
+      points: 1,
+    },
+    {
+      id: "q82",
+      roadmapId: "payments",
+      question: "What API is used for handling payments in PWAs?",
+      options: [
+        {
+          id: "q82_a",
+          text: "Payment Request API",
+        },
+        { id: "q82_b", text: "Web Payments API" },
+        { id: "q82_c", text: "Stripe API" },
+        { id: "q82_d", text: "PayPal SDK" },
+      ],
+      correctAnswers: ["q82_a"],
+      points: 1,
+    },
+    {
+      id: "q83",
+      roadmapId: "credentials",
+      question: "What is the Credential Management API used for in PWAs?",
+      options: [
+        {
+          id: "q83_a",
+          text: "Storing and retrieving user credentials securely",
+        },
+        { id: "q83_b", text: "Managing API keys" },
+        { id: "q83_c", text: "Handling server certificates" },
+        { id: "q83_d", text: "Creating passwords" },
+      ],
+      correctAnswers: ["q83_a"],
+      points: 1,
+    },
+  ],
+};
