@@ -17,6 +17,7 @@ import {
 } from "react-icons/bs";
 import { LuHeading1, LuHeading2 } from "react-icons/lu";
 import { ProgressButton } from "@/components/features/docs/ProgressButton";
+import Image from "next/image";
 
 export default function DocPage() {
   const params = useParams();
@@ -130,10 +131,12 @@ export default function DocPage() {
           </div>
           <div className="mt-4 flex items-center gap-4">
             <div className="flex items-center gap-2">
-              <img
+              <Image
                 src={doc.author.avatar}
                 alt={doc.author.name}
-                className="h-8 w-8 rounded-full"
+                width={24}
+                height={24}
+                className="rounded-full"
               />
               <span className="text-sm text-gray-600 dark:text-gray-300">
                 {doc.author.name}

@@ -1,5 +1,6 @@
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "default" | "outline";
+  children: React.ReactNode;
+  variant?: "default" | "outline" | "primary";
 }
 
 export default function Button({ variant = "default", ...props }: ButtonProps) {
@@ -7,6 +8,7 @@ export default function Button({ variant = "default", ...props }: ButtonProps) {
     default: "bg-primary text-white hover:bg-primary/90",
     outline:
       "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+    primary: "bg-blue-600 text-white hover:bg-blue-700",
   };
 
   return (

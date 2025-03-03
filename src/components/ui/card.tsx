@@ -23,6 +23,7 @@ export default function Card({
 
   return (
     <div
+      data-testid="card"
       className={`${baseStyles} ${variants[variant]} p-6 ${className}`}
       {...props}
     >
