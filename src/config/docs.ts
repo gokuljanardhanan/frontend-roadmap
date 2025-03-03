@@ -20,6 +20,10 @@ import { accessibility } from "./documentation/Accessibility";
 import { Networking } from "./documentation/Networking";
 import { Security } from "./documentation/Security";
 import { Performance } from "./documentation/Performance";
+import { unitTesting } from "./documentation/UnitTesting";
+import { e2eTesting } from "./documentation/e2eTesting";
+import { webWorkers } from "./documentation/WebWorkers";
+import { serviceWorkers } from "./documentation/ServiceWorkers";
 
 export type Doc = {
   id: string;
@@ -42,7 +46,8 @@ export type Doc = {
     | "react"
     | "system-design"
     | "performance"
-    | "frontend-infra";
+    | "frontend-infra"
+    | "testing";
 };
 
 export const sampleDocs: Doc[] = [
@@ -819,5 +824,80 @@ Count Primes, Rectangle Overlap.
     ],
     published: true,
     folder: "javascript",
+  },
+  {
+    id: "25",
+    title: "Unit Testing",
+    slug: "unit-testing",
+    description: "Unit Testing",
+    content: unitTesting,
+    author: {
+      id: "1",
+      name: "Gokul Janardhanan",
+      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=John",
+    },
+    createdAt: "2024-03-10T10:02:00Z",
+    updatedAt: "2024-03-10T10:02:00Z",
+    tags: ["testing", "programming", "web-development", "coding", "tutorial"],
+    published: true,
+    folder: "testing",
+  },
+  {
+    id: "26",
+    title: "E2E Testing",
+    slug: "e2e-testing",
+    description: "E2E Testing",
+    content: e2eTesting,
+    author: {
+      id: "1",
+      name: "Gokul Janardhanan",
+      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=John",
+    },
+    createdAt: "2024-03-10T10:02:00Z",
+    updatedAt: "2024-03-10T10:02:00Z",
+    tags: ["testing", "programming", "web-development", "coding", "tutorial"],
+    published: true,
+    folder: "testing",
+  },
+  {
+    id: "27",
+    title: "Web Workers",
+    slug: "web-workers",
+    description: "Web Workers",
+    content: webWorkers,
+    author: {
+      id: "1",
+      name: "Gokul Janardhanan",
+      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=John",
+    },
+    createdAt: "2024-03-10T10:02:00Z",
+    updatedAt: "2024-03-10T10:02:00Z",
+    tags: [
+      "web-workers",
+      "programming",
+      "web-development",
+      "coding",
+      "tutorial",
+    ],
+    published: true,
+    folder: "performance",
+  },
+  {
+    id: "28",
+    title: "Service Workers",
+    slug: "service-workers",
+    description:
+      "Learn about Service Workers and implementing offline-first functionality",
+    content: serviceWorkers,
+    author: {
+      id: "1",
+      name: "Gokul Janardhanan",
+      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=John",
+    },
+    createdAt: "2024-03-10T10:02:00Z",
+    updatedAt: "2024-03-10T10:02:00Z",
+    tags: ["service-workers", "pwa", "offline-first", "web-development"],
+    published: true,
+    folder: "performance",
   },
 ];

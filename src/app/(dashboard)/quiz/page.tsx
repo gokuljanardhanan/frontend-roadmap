@@ -1,10 +1,24 @@
 "use client";
 
 import { Quiz, sampleQuiz } from "@/config/quiz";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "@/components/ui/button";
 import Card from "@/components/ui/card";
+
+interface QuizAnalytics {
+  score: number;
+  totalQuestions: number;
+  correctAnswers: number;
+  incorrectAnswers: number;
+  accuracy: number;
+  timeTaken: number;
+  analytics: {
+    byTopic: Record<string, { total: number; correct: number }>;
+    strengths: string[];
+    weaknesses: string[];
+  };
+}
 
 export default function QuizPage() {
   const [currentQuiz] = useState<Quiz>(sampleQuiz);
@@ -12,10 +26,44 @@ export default function QuizPage() {
   const [answers, setAnswers] = useState<Record<string, string[]>>({});
   const [submitted, setSubmitted] = useState(false);
   const [score, setScore] = useState<number>(0);
+  const [quizAnalytics, setQuizAnalytics] = useState<QuizAnalytics | null>(
+    null
+  );
+  const [isCalculating, setIsCalculating] = useState(false);
 
   const currentQuestion = currentQuiz.questions[currentQuestionIndex];
   const isLastQuestion =
     currentQuestionIndex === currentQuiz.questions.length - 1;
+
+  useEffect(() => {
+    console.log("before calling worker");
+    if (submitted && isLastQuestion && !quizAnalytics) {
+      setIsCalculating(true);
+
+      // Create worker for analytics calculation
+      const worker = new Worker("/sampleWorker.js");
+
+      worker.onmessage = function (e) {
+        setQuizAnalytics(e.data);
+        setIsCalculating(false);
+        worker.terminate();
+      };
+
+      console.log("calling worker", worker);
+
+      // Send quiz data to worker
+      worker.postMessage({
+        answers,
+        questions: currentQuiz.questions,
+      });
+    }
+  }, [
+    submitted,
+    isLastQuestion,
+    answers,
+    currentQuiz.questions,
+    quizAnalytics,
+  ]);
 
   const handleOptionSelect = (questionId: string, optionId: string) => {
     setAnswers((prev) => {
@@ -74,8 +122,17 @@ export default function QuizPage() {
     <div className="container mx-auto max-w-4xl px-4 py-8">
       <div className="mb-8 flex items-center justify-between">
         <h1 className="text-3xl font-bold">{currentQuiz.title}</h1>
-        <div className="text-sm text-gray-600 dark:text-gray-300">
-          Question {currentQuestionIndex + 1} of {currentQuiz.questions.length}
+        <div className="flex items-center gap-4">
+          <div className="rounded-lg bg-gray-100 px-4 py-2 text-sm text-gray-600 dark:bg-gray-800 dark:text-gray-300">
+            Question {currentQuestionIndex + 1} of{" "}
+            {currentQuiz.questions.length}
+          </div>
+          <div className="rounded-lg bg-blue-100 px-4 py-2 text-sm text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+            Score: {score} /{" "}
+            {currentQuiz.questions
+              .slice(0, currentQuestionIndex + (submitted ? 1 : 0))
+              .reduce((acc, q) => acc + (q.points || 1), 0)}
+          </div>
         </div>
       </div>
 
@@ -138,14 +195,7 @@ export default function QuizPage() {
         </AnimatePresence>
       </div>
 
-      <div className="mt-8 flex items-center justify-between">
-        <div className="text-sm text-gray-600 dark:text-gray-300">
-          Score: {score} /{" "}
-          {currentQuiz.questions
-            .slice(0, currentQuestionIndex + (submitted ? 1 : 0))
-            .reduce((acc, q) => acc + (q.points || 1), 0)}
-        </div>
-
+      <div className="mt-8 flex justify-end">
         {isLastQuestion && submitted ? (
           <div className="text-lg font-semibold">
             Final Score:{" "}
@@ -163,12 +213,84 @@ export default function QuizPage() {
               onClick={handleSubmit}
               disabled={!answers[currentQuestion.id]?.length}
               className="px-8"
+              variant="primary"
             >
               Submit Answer
             </Button>
           )
         )}
       </div>
+
+      {isLastQuestion && submitted && (
+        <Card className="mt-8">
+          <div className="p-6">
+            <h2 className="mb-6 text-2xl font-bold">Quiz Results</h2>
+            {isCalculating ? (
+              <div className="flex items-center justify-center py-8">
+                <div className="text-center">
+                  <div className="mb-3 h-8 w-8 animate-spin rounded-full border-4 border-blue-500 border-t-transparent"></div>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    Calculating your results...
+                  </p>
+                </div>
+              </div>
+            ) : (
+              quizAnalytics && (
+                <div className="space-y-6">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="rounded-lg bg-gray-50 p-4 dark:bg-gray-800">
+                      <div className="text-sm text-gray-600 dark:text-gray-400">
+                        Total Score
+                      </div>
+                      <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                        {quizAnalytics.score} / {quizAnalytics.totalQuestions}
+                      </div>
+                    </div>
+                    <div className="rounded-lg bg-gray-50 p-4 dark:bg-gray-800">
+                      <div className="text-sm text-gray-600 dark:text-gray-400">
+                        Accuracy
+                      </div>
+                      <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                        {quizAnalytics.accuracy.toFixed(1)}%
+                      </div>
+                    </div>
+                  </div>
+
+                  {quizAnalytics.analytics.strengths.length > 0 && (
+                    <div className="rounded-lg border border-green-200 bg-green-50 p-4 dark:border-green-900 dark:bg-green-900/20">
+                      <h3 className="mb-2 font-medium text-green-800 dark:text-green-200">
+                        Strong Topics
+                      </h3>
+                      <ul className="list-disc space-y-1 pl-5 text-green-700 dark:text-green-300">
+                        {quizAnalytics.analytics.strengths.map(
+                          (topic: string) => (
+                            <li key={topic}>{topic}</li>
+                          )
+                        )}
+                      </ul>
+                    </div>
+                  )}
+
+                  {quizAnalytics.analytics.weaknesses.length > 0 && (
+                    <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 dark:border-amber-900 dark:bg-amber-900/20">
+                      <h3 className="mb-2 font-medium text-amber-800 dark:text-amber-200">
+                        Areas for Improvement
+                      </h3>
+                      <ul className="list-disc space-y-1 pl-5 text-amber-700 dark:text-amber-300">
+                        {quizAnalytics.analytics.weaknesses.map(
+                          (topic: string) => (
+                            <li key={topic}>{topic}</li>
+                          )
+                        )}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              )
+            )}
+          </div>
+        </Card>
+      )}
     </div>
   );
 }

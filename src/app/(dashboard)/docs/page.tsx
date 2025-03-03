@@ -9,6 +9,7 @@ import { SearchBar } from "@/components/features/docs/SearchBar";
 import { Pagination } from "@/components/features/docs/Pagination";
 import FolderView from "@/components/features/docs/FolderView";
 import { FolderIcon, Squares2X2Icon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -90,10 +91,12 @@ export default function DocsPage() {
                     </p>
                     <div className="mt-4 flex items-center gap-4">
                       <div className="flex items-center gap-2">
-                        <img
+                        <Image
                           src={doc.author.avatar}
                           alt={doc.author.name}
-                          className="h-6 w-6 rounded-full"
+                          width={24}
+                          height={24}
+                          className="rounded-full"
                         />
                         <span className="text-sm text-gray-600 dark:text-gray-300">
                           {doc.author.name}

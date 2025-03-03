@@ -5,6 +5,7 @@ import { FolderIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
 import Card from "@/components/ui/card";
 import { formatDistanceToNow } from "date-fns";
 import { Pagination } from "@/components/features/docs/Pagination";
+import Image from "next/image";
 
 type FolderType = {
   id: string;
@@ -23,6 +24,7 @@ const folders: FolderType[] = [
     name: "Frontend Infrastructure",
     color: "text-orange-500",
   },
+  { id: "testing", name: "Testing", color: "text-red-500" },
 ];
 
 const ITEMS_PER_PAGE = 6; // Same as main view for consistency
@@ -86,10 +88,12 @@ export default function FolderView({ docs }: FolderViewProps) {
                   </p>
                   <div className="mt-4 flex items-center gap-4">
                     <div className="flex items-center gap-2">
-                      <img
+                      <Image
                         src={doc.author.avatar}
                         alt={doc.author.name}
-                        className="h-6 w-6 rounded-full"
+                        width={24}
+                        height={24}
+                        className="rounded-full"
                       />
                       <span className="text-sm text-gray-600 dark:text-gray-300">
                         {doc.author.name}
